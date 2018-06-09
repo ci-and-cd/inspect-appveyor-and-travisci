@@ -6,6 +6,8 @@ uname -a
 echo cat /etc/*-release
 cat /etc/*-release
 
+echo JAVA_HOME=${JAVA_HOME}
+
 echo java version
 java -version
 
