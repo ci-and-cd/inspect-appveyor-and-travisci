@@ -49,7 +49,7 @@ services:
 - docker
 
 test_script:
-- sh: inspect.sh
+- sh: ./inspect.sh
 
 # build phase should be off as,
 # by default, it’s set to MSBuild mode for automatic discovery and building of .NET Core projects (see the section below).
