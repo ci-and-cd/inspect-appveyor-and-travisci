@@ -28,12 +28,20 @@ if type -p gpg2 > /dev/null ; then
 fi
 
 if type -p openssl > /dev/null ; then
-    echo openssl --version
-    openssl --version
+    echo openssl version
+    openssl version
 fi
 
 echo mvn -version
+echo PATH=$PATH
+echo M2_HOME=${M2_HOME}
 mvn -version
 
 echo gradle -v
+echo M2_HOME=${M2_HOME}
+echo GRADLE_HOME=${GRADLE_HOME}
 gradle -v
+
+echo CI_OPT_CI_SCRIPT=${CI_OPT_CI_SCRIPT}
+echo CI_OPT_INFRASTRUCTURE=${CI_OPT_INFRASTRUCTURE}
+echo MAVEN_SKIP_RC=${MAVEN_SKIP_RC}

@@ -39,7 +39,7 @@ install:
 - sh: sudo apt-get install -y aria2 gnupg2 graphviz openssl
 - sh: aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o apache-maven-3.5.3-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip && unzip -qq apache-maven-3.5.3-bin.zip
 - sh: M2_HOME=$PWD/apache-maven-3.5.3
-- sh: PATH=$M2_HOME/bin:$PATH
+- sh: export PATH=$M2_HOME/bin:$PATH
 - sh: aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o gradle-4.7-all.zip https://services.gradle.org/distributions/gradle-4.7-all.zip && sudo mkdir -p /opt/gradle && sudo unzip -foq gradle-4.7-all.zip -d /opt/gradle
 - sh: sudo ln -sfn gradle-4.7 /opt/gradle/latest
 - sh: GRADLE_HOME=/opt/gradle/latest
