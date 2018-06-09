@@ -45,12 +45,12 @@ install:
 - sh: sudo mkdir -p /opt/maven
 - sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/maven -o apache-maven-3.5.3-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip && sudo unzip /opt/maven/apache-maven-3.5.3-bin.zip -d /opt/maven > /dev/null
 - sh: sudo ln -sfn apache-maven-3.5.3 /opt/maven/latest
-- sh: ls -la /opt/maven
-- sh: ls -la /opt/maven/latest/
+#- sh: ls -la /opt/maven
+#- sh: ls -la /opt/maven/latest/
 - sh: export M3_HOME=/opt/maven/latest
 - sh: export PATH=$M3_HOME/bin:$PATH
 - sh: sudo mkdir -p /opt/gradle
-- sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/gradle -o gradle-4.7-all.zip https://services.gradle.org/distributions/gradle-4.7-all.zip && sudo unzip gradle-4.7-all.zip -d /opt/gradle > /dev/null
+- sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/gradle -o gradle-4.7-all.zip https://services.gradle.org/distributions/gradle-4.7-all.zip && sudo unzip /opt/gradle/gradle-4.7-all.zip -d /opt/gradle > /dev/null
 - sh: sudo ln -sfn gradle-4.7 /opt/gradle/latest
 - sh: ls -la /opt/gradle
 - sh: ls -la /opt/gradle/latest/
