@@ -34,12 +34,14 @@ fi
 
 echo mvn -version
 echo PATH=$PATH
-echo M2_HOME=${M2_HOME}
+echo M3_HOME=${M3_HOME}
+ls -la ${M3_HOME}
 mvn -version
 
 echo gradle -v
-echo M2_HOME=${M2_HOME}
+echo PATH=$PATH
 echo GRADLE_HOME=${GRADLE_HOME}
+ls -la ${GRADLE_HOME}
 gradle -v
 
 echo CI_OPT_CI_SCRIPT=${CI_OPT_CI_SCRIPT}
