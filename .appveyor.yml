@@ -1,0 +1,56 @@
+# see: https://www.appveyor.com/docs/getting-started-with-appveyor-for-linux/#introduction
+
+# General build flow
+#init scripts
+#Update /etc/hosts file
+#Clone repository
+#Restore build cache
+#Configure stack
+#install scripts
+#Start services
+#Patch version in .csproj and AssemblyInfo.cs files
+#“build” phase
+#“test” phase
+#“package” phase
+#“deploy” phase
+#on_success scripts
+#on_failure scripts (if the build has failed)
+#on_finish scripts
+
+image: ubuntu
+
+init:
+- CI_OPT_CI_SCRIPT=https://github.com/ci-and-cd/maven-build/raw/master/src/main/ci-script/lib_ci.sh
+- CI_OPT_INFRASTRUCTURE=opensource
+- MAVEN_SKIP_RC=true
+
+cache:
+- "$HOME/.cache"
+- "$HOME/.gradle"
+- "$HOME/.m2"
+- "$HOME/.sonar/cache"
+
+# see: https://www.appveyor.com/docs/build-environment/
+stack: node 9, jdk 8
+
+install:
+- ls -al
+- sh: sudo apt-get update
+- sh: sudo apt-get install -y aria2 gnupg2 graphviz openssl
+- sh: aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o apache-maven-3.5.3-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip && unzip -qq apache-maven-3.5.3-bin.zip
+- sh: M2_HOME=$PWD/apache-maven-3.5.3
+- sh: PATH=$M2_HOME/bin:$PATH
+- sh: aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o gradle-4.7-all.zip https://services.gradle.org/distributions/gradle-4.7-all.zip && sudo mkdir -p /opt/gradle && sudo unzip -foq gradle-4.7-all.zip -d /opt/gradle
+- sh: sudo ln -sfn gradle-4.7 /opt/gradle/latest
+- sh: GRADLE_HOME=/opt/gradle/latest
+- sh: PATH=$PATH:$GRADLE_HOME/bin
+
+services:
+- docker
+
+test_script:
+- sh: inspect.sh
+
+# build phase should be off as,
+# by default, it’s set to MSBuild mode for automatic discovery and building of .NET Core projects (see the section below).
+build: off
