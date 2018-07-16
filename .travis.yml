@@ -8,8 +8,8 @@ addons:
     - graphviz
     - openssl
 before_install:
-- aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o apache-maven-3.5.3-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip && unzip -qq apache-maven-3.5.3-bin.zip
-- export M3_HOME=$PWD/apache-maven-3.5.3
+- aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o apache-maven-3.5.4-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip && unzip -qq apache-maven-3.5.4-bin.zip
+- export M3_HOME=$PWD/apache-maven-3.5.4
 - export PATH=$M3_HOME/bin:$PATH
 branches:
   only:
@@ -37,7 +37,8 @@ group: edge
 install: true
 jdk:
 - oraclejdk8
-#- oraclejdk9
+- oraclejdk9
+- oraclejdk10
 language: java
 script:
 - bash inspect.sh
