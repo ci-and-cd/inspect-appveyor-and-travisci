@@ -42,7 +42,7 @@ mvn -version
 
 echo gradle -v
 echo PATH=$PATH
-echo GRADLE_HOME=${GRADLE_HOME}
+echo "GRADLE_HOME=${GRADLE_HOME}"
 ls -la ${GRADLE_HOME}/
 gradle -v
 
