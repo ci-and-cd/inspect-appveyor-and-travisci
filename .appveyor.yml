@@ -35,7 +35,8 @@ cache:
 - "$HOME/.sonar/cache"
 
 # see: https://www.appveyor.com/docs/build-environment/
-stack: node 9, jdk 8
+#, jdk 8, jdk 9
+stack: node 9, jdk 10
 
 install:
 - ls -al
@@ -43,15 +44,15 @@ install:
 - sh: sudo apt-get install -yq --no-install-suggests --no-install-recommends aria2 gnupg2 graphviz openssl
 - sh: unset M2_HOME
 - sh: sudo mkdir -p /opt/maven
-- sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/maven -o apache-maven-3.5.3-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip && sudo unzip /opt/maven/apache-maven-3.5.3-bin.zip -d /opt/maven > /dev/null
-- sh: sudo ln -sfn apache-maven-3.5.3 /opt/maven/latest
+- sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/maven -o apache-maven-3.5.4-bin.zip https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip && sudo unzip /opt/maven/apache-maven-3.5.4-bin.zip -d /opt/maven > /dev/null
+- sh: sudo ln -sfn apache-maven-3.5.4 /opt/maven/latest
 #- sh: ls -la /opt/maven
 #- sh: ls -la /opt/maven/latest/
 - sh: export M3_HOME=/opt/maven/latest
 - sh: export PATH=$M3_HOME/bin:$PATH
 - sh: sudo mkdir -p /opt/gradle
-- sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/gradle -o gradle-4.7-all.zip https://services.gradle.org/distributions/gradle-4.7-all.zip && sudo unzip /opt/gradle/gradle-4.7-all.zip -d /opt/gradle > /dev/null
-- sh: sudo ln -sfn gradle-4.7 /opt/gradle/latest
+- sh: sudo aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d /opt/gradle -o gradle-4.8.1-all.zip https://services.gradle.org/distributions/gradle-4.8.1-all.zip && sudo unzip /opt/gradle/gradle-4.8.1-all.zip -d /opt/gradle > /dev/null
+- sh: sudo ln -sfn gradle-4.8.1 /opt/gradle/latest
 - sh: ls -la /opt/gradle
 - sh: ls -la /opt/gradle/latest/
 - sh: export GRADLE_HOME=/opt/gradle/latest
